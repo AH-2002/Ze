@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box;
+}
 .App {
   text-align: center;
 }
@@ -35,4 +38,30 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.home{
+  background-color: rgb(236, 235, 235);
+}
+.navbar a{
+  color: #000080 !important;
+}
+.home li a{
+  color: rgba(0, 0, 0, 0.741) !important;
+}
+
+.home{
+  --bs-gutter-x:0 !important;
+}
+
+.home ul li{
+  height: 50px !important;
+  margin-bottom: 40px;
+}
+a{
+  text-decoration: none !important;
+  color: inherit !important;
+}
+.users-home{
+  align-items: start !important;
 }
