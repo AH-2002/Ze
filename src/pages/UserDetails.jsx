@@ -32,62 +32,73 @@ export default function UserDetails() {
                     {`${userDetails.firstName} ${userDetails.maidenName} ${userDetails.lastName}`}
                 </div>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }} className='Personal-Details'>
+            <div className='personal-details' style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
                 <h5>Personal Details</h5>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <div>
                         {userDetails.gender === 'male' ?
-                            (<i style={{ fontSize: '30px' }} className="fa-solid fa-person"> {userDetails.gender}</i>) :
-                            (<i style={{ fontSize: '30px' }} className="fa-solid fa-person-dress"> {userDetails.gender}</i>)}
+                            (<><i style={{ fontSize: '30px' }} className="fa-solid fa-person"></i><span> {userDetails.gender}</span></>) :
+                            (<><i style={{ fontSize: '30px' }} className="fa-solid fa-person-dress"></i> <span> {userDetails.gender}</span></>)}
                     </div>
                     <div>
-                        <i className="fa-solid fa-phone">  {userDetails.phone}</i>
-                    </div>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <div>
-                        <i className="fa-solid fa-cake-candles"> {userDetails.birthDate}</i>
-                    </div>
-                    <div>
-                        <i className="fa-solid fa-droplet"> {userDetails.bloodGroup}</i>
+                        <i className="fa-solid fa-phone"></i>
+                        <span> {userDetails.phone}</span>
                     </div>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <div>
-                        <i className="fa-solid fa-arrows-up-down"> {userDetails.height}</i>
+                        <i className="fa-solid fa-cake-candles"></i>
+                        <span> {userDetails.birthDate}</span>
                     </div>
                     <div>
-                        <i className="fa-solid fa-weight-scale">{userDetails.weight}</i>
+                        <i className="fa-solid fa-droplet"></i>
+                        <span> {userDetails.bloodGroup}</span>
                     </div>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <div>
-                        <i className="fa-solid fa-eye">{userDetails.eyeColor}</i>
+                        <i className="fa-solid fa-arrows-up-down"></i>
+                        <span> {userDetails.height}</span>
                     </div>
                     <div>
-                        <i className="fa-solid fa-head-side-virus"> {`${userDetails?.hair?.color} ${userDetails?.hair?.type}`}
-                        </i>
+                        <i className="fa-solid fa-weight-scale"></i>
+                        <span>{userDetails.weight}</span>
+                    </div>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <div>
+                        <i className="fa-solid fa-eye"></i>
+                        <span>{userDetails.eyeColor}</span>
+                    </div>
+                    <div>
+                        <i className="fa-solid fa-head-side-virus"></i>
+                        <span> {`${userDetails?.hair?.color} ${userDetails?.hair?.type}`}</span>
 
                     </div>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <div>
-                        <i className="fa-solid fa-location-dot"> {`${userDetails?.address?.address} ${userDetails?.address?.city}`}</i>
+                        <i className="fa-solid fa-location-dot"></i>
+                        <span> {`${userDetails?.address?.address} ${userDetails?.address?.city}`}</span>
                     </div>
                     <div>
-                        <i className="fa-solid fa-location-dot"> {`${userDetails?.address?.state} ${userDetails?.address?.country}`}</i>
+                        <i className="fa-solid fa-location-dot"></i>
+                        <span> {`${userDetails?.address?.state} ${userDetails?.address?.country}`}</span>
                     </div>
                 </div>
             </div>
             <div className="education">
                 <h5>Education</h5>
-                <div style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%',margin:'30px 0' }}>
-                    <i class="fa-solid fa-graduation-cap"> {userDetails.university}</i>
+                <div style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                    <div>
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <span>{userDetails.university}</span>
+                    </div>
                 </div>
             </div>
             <div className="Work-Experience">
                 <h5>Work Experience</h5>
-                <div style={{paddingBottom:'20px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', textAlign: 'left' }}>
+                <div style={{ paddingBottom: '20px', fontSize: 'larger', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', textAlign: 'left' }}>
                     <div>
                         {`Company: ${userDetails?.company?.name}`}
                     </div>

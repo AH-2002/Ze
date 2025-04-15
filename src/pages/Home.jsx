@@ -56,7 +56,6 @@ export default function Home() {
 
                 return [data, ...updatedPosts];
             });
-
             setPostTitle("");
             setPostContent("");
             setTags([]);
@@ -104,22 +103,28 @@ export default function Home() {
                 <ul className='list-unstyled' style={{ display: 'flex', flexDirection: 'column', alignItems: 'start', justifyContent: 'space-between', height: 'auto', paddingLeft: '20px' }}>
                     <Link to={'/users'} >
                         <li>
-                            <i className="fa-solid fa-user-group"> Users</i>
+                            <i className="fa-solid fa-user-group"></i>
+                            <span className="custom-text">Users</span>
                         </li>
                     </Link>
                     <Link to={'/quotes'}>
                         <li>
-                            <i className="fa-solid fa-quote-left"> Qoutes</i>
+                            <i className="fa-solid fa-quote-left"></i>
+                            <span className="custom-text">Qoutes</span>
+
                         </li>
                     </Link>
                     <Link to={'/todo'}>
                         <li>
-                            <i className="fa-solid fa-table-list"> To do list</i>
+                            <i className="fa-solid fa-table-list"></i>
+                            <span className="custom-text">To do list</span>
+
                         </li>
                     </Link>
                     <Link to={'/recipes'}>
                         <li>
-                            <i className="fa-solid fa-bowl-food"> Recipes</i>
+                            <i className="fa-solid fa-bowl-food"> </i>
+                            <span className="custom-text">Recipes</span>
                         </li>
                     </Link>
                 </ul>
