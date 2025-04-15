@@ -14,9 +14,9 @@ export default function UserDetails() {
     }
     useEffect(() => { getUserDetials() }, [])
     return (
-        <section style={{
+        <section className='user-details' style={{
             padding: '20px 0', width: '85%', margin: 'auto',
-            display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100vh'
+            display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
         }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div>
@@ -98,7 +98,7 @@ export default function UserDetails() {
             </div>
             <div className="Work-Experience">
                 <h5>Work Experience</h5>
-                <div style={{ paddingBottom: '20px', fontSize: 'larger', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', textAlign: 'left' }}>
+                <div style={{fontSize: 'larger', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: 'auto', textAlign: 'left' }}>
                     <div>
                         {`Company: ${userDetails?.company?.name}`}
                     </div>

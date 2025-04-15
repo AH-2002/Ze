@@ -80,3 +80,17 @@ a{
 .users-home{
   align-items: start !important;
 }
+
+.user-details h5{
+  background-color: #6f6f8a !important;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+}
+.user-details .personal-details,.user-details .education, .user-details .Work-Experience{
+  background-color: rgb(236, 235, 235);
+  padding: 20px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
