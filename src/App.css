@@ -89,8 +89,25 @@ a{
 }
 .user-details .personal-details,.user-details .education, .user-details .Work-Experience{
   background-color: rgb(236, 235, 235);
-  padding: 20px;
+  padding: 20px 20px 5px 20px;
   border-radius: 20px;
   margin-bottom: 10px;
   margin-top: 10px;
+}
+.personal-info div{
+margin-bottom: 10px;
+}
+.Work-Experience div div{
+  margin-bottom: 10px;
+}
+@media (max-width: 704px) {
+.personal-info{
+  flex-direction: column !important;
+}
+.personal-info div{
+  margin: 5px 0;
+}
+.personal-details{
+  text-align: left !important;
+}
 }

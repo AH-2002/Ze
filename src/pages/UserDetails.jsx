@@ -34,7 +34,7 @@ export default function UserDetails() {
             </div>
             <div className='personal-details' style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
                 <h5>Personal Details</h5>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div className='personal-info' style={{ display: 'flex', justifyContent: 'space-between'}}>
                     <div>
                         {userDetails.gender === 'male' ?
                             (<><i style={{ fontSize: '30px' }} className="fa-solid fa-person"></i><span> {userDetails.gender}</span></>) :
@@ -45,7 +45,7 @@ export default function UserDetails() {
                         <span> {userDetails.phone}</span>
                     </div>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <div className='personal-info' style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <div>
                         <i className="fa-solid fa-cake-candles"></i>
                         <span> {userDetails.birthDate}</span>
@@ -55,7 +55,7 @@ export default function UserDetails() {
                         <span> {userDetails.bloodGroup}</span>
                     </div>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <div className='personal-info' style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <div>
                         <i className="fa-solid fa-arrows-up-down"></i>
                         <span> {userDetails.height}</span>
@@ -65,7 +65,7 @@ export default function UserDetails() {
                         <span>{userDetails.weight}</span>
                     </div>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <div className='personal-info' style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <div>
                         <i className="fa-solid fa-eye"></i>
                         <span>{userDetails.eyeColor}</span>
@@ -76,7 +76,7 @@ export default function UserDetails() {
 
                     </div>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <div className='personal-info' style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <div>
                         <i className="fa-solid fa-location-dot"></i>
                         <span> {`${userDetails?.address?.address} ${userDetails?.address?.city}`}</span>
@@ -88,7 +88,7 @@ export default function UserDetails() {
                 </div>
             </div>
             <div className="education">
-                <h5>Education</h5>
+                <h5 style={{marginBottom:'20px'}}>Education</h5>
                 <div style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                     <div>
                         <i class="fa-solid fa-graduation-cap"></i>
