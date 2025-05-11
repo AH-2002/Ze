@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { usersContext } from "../context/Store"
 
 
-export default function Home() {
+export default function Users() {
     let { users } = useContext(usersContext)
     return (
         <section style={{ background: 'white' }}>
@@ -13,7 +13,7 @@ export default function Home() {
                 {users && users.map((user) => (
                     <Link to={`/userDetails/${user.id}`}>
 
-                        <div style={{background: 'rgb(236, 235, 235)', padding: '10px', borderRadius: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+                        <div style={{ background: 'rgb(236, 235, 235)', padding: '10px', borderRadius: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
                             <div>
                                 <img
                                     src={user.image}
@@ -21,9 +21,10 @@ export default function Home() {
                                     width="50"
                                     height="50"
                                     style={{ borderRadius: "50%", objectFit: "cover", marginRight: "10px" }}
-                                />                        </div>
+                                />
+                            </div>
                             <div>
-                                {`${user.firstName} ${user.LastName}`}
+                                {`${user.firstName} ${user.lastName}`}
                             </div>
                             <div>
                                 {user.gender}

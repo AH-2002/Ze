@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router"
-import BASE_URL from "../config";
+import { BASE_URL, BASE_URL1 } from "../config";
 
 
 export default function UserDetails() {
@@ -9,10 +9,9 @@ export default function UserDetails() {
     let [userDetails, setUserDetails] = useState({});
     async function getUserDetials() {
         let { data } = await axios.get(`${BASE_URL}/users/${params.id}`)
-        console.log(data);
         setUserDetails(data);
     }
-    useEffect(() => { getUserDetials() }, [])
+    useEffect(() => { getUserDetials() }, [params.id])
     return (
         <section className='user-details' style={{
             padding: '20px 0', width: '85%', margin: 'auto',

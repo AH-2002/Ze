@@ -15,12 +15,11 @@ import NotFound from './pages/NotFound';
 function App() {
   return (
     <div className="App">
-      <Navbar />
       <div>
-
         <PostsContextProvider>
           <TodosContextProvider>
             <UsersContextProvider>
+            <Navbar />
               <Routes>
                 <Route path='/' element={<Signin />} />
                 <Route path='/signin' element={<Signin />} />

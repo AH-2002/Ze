@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
-import BASE_URL from "../config";
+import { BASE_URL, BASE_URL1 } from "../config";
 
 export let usersContext = createContext(0);
 export let todosContext = createContext(0);
@@ -12,11 +12,14 @@ export function PostsContextProvider(props) {
         try {
             let { data } = await axios.get(`${BASE_URL}/posts`);
             setPosts(data.posts);
+            console.log(data)
         } catch (error) {
             console.error("Error fetching users", error);
         }
     }
-    useEffect(() => { GetPosts() }, [])
+    useEffect(() => {
+        GetPosts()
+    }, [])
     return <postsContext.Provider value={{ posts, setPosts }}>
         {props.children}
     </postsContext.Provider>

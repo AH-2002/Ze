@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
-import BASE_URL from "../config";
+import { BASE_URL, BASE_URL1 } from "../config";
 
 export default function Quotes() {
     let [quotes, setQuotes] = useState([]);

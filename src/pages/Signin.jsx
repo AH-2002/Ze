@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import BASE_URL from '../config';
+import { BASE_URL, BASE_URL1 } from "../config";
 
 export default function Signin() {
     const [username, setUsername] = useState('');

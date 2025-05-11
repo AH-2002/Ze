@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react"
 import { Link } from "react-router-dom";
-import BASE_URL from "../config";
+import { BASE_URL, BASE_URL1 } from "../config";
 import { postsContext, todosContext, usersContext } from "../context/Store"
 
 export default function Home() {
@@ -16,6 +16,8 @@ export default function Home() {
     const [commentText, setCommentText] = useState({});
     const userData = JSON.parse(localStorage.getItem("userData"));
 
+    console.log(comments);
+
 
     const handleAddTag = (e) => {
         if (e.key === 'Enter' && tagInput.trim()) {
@@ -27,6 +29,28 @@ export default function Home() {
         }
     }
 
+    const handleLike = (postId) => {
+        setPosts(prevPosts =>
+            prevPosts.map(post =>
+                post.id === postId
+                    ? { ...post, reactions: { ...post.reactions, likes: post.reactions.likes + 1 } }
+                    : post
+            )
+        );
+        // Optional: Send the updated likes to the backend
+        // axios.patch(`${BASE_URL}/posts/${postId}`, { likes: newLikeCount });
+    };
+    const handleDislike = (postId) => {
+        setPosts(prevPosts =>
+            prevPosts.map(post =>
+                post.id === postId
+                    ? { ...post, reactions: { ...post.reactions, dislikes: post.reactions.dislikes + 1 } }
+                    : post
+            )
+        );
+        // Optional: Send the updated likes to the backend
+        // axios.patch(`${BASE_URL}/posts/${postId}`, { likes: newLikeCount });
+    };
 
     const removeTag = (tagToRemove) => {
         setTags(tags.filter(tag => tag !== tagToRemove));
@@ -61,7 +85,6 @@ export default function Home() {
             setTags([]);
         } catch (error) {
             console.error("Error creating post", error);
-
         }
     }
     const showComments = async () => {
@@ -72,21 +95,30 @@ export default function Home() {
             console.error("Error show comments", error);
         }
     }
-    const handleAddComment = async (postId) => {
-        try {
-            const addComment = {
-                body: commentText[postId],
-                userId: 1,
-                postId: postId
-            };
-            let response = await axios.post(`${BASE_URL}/comments/add`, addComment);
-            console.log(response);
-            setCommentText(prev => ({ ...prev, [postId]: "" })); // Clear comment for that post
-            showComments()
-        } catch (error) {
-            console.error("Error Add Comment", error);
-        }
-    }
+    const handleAddComment = (postId) => {
+        const newComment = {
+            id: comments.length + 1, // Or generate a unique ID if possible
+            body: commentText[postId],
+            userId: 1, // assuming a user ID
+            postId: postId,
+            likes: 0,
+            user: {
+                id: userData.id,
+                username: userData.fullName,
+                fullName: userData.fullName
+            }
+        };
+
+        // Update the comments state with the new comment
+        setComments((prevComments) => [...prevComments, newComment]);
+
+        // Clear the input for that post
+        setCommentText((prev) => ({
+            ...prev,
+            [postId]: ""
+        }));
+    };
+
     const handleCommentChnage = (postId, e) => {
         setCommentText(prev => ({
             ...prev,
@@ -185,38 +217,49 @@ export default function Home() {
                             </div>
 
                             <div className="d-flex justify-content-between align-items-center mt-2" style={{ fontSize: '14px', color: 'gray' }}>
-                                <span><i className="fa-regular fa-eye me-1"></i> {post.views} views</span>
-                                <span><i className="fa-regular fa-thumbs-up me-1"></i> {post.reactions.likes} Likes</span>
-                                <span><i className="fa-regular fa-thumbs-down me-1"></i> {post.reactions.dislikes} Dislikes</span>
-                            </div>
+                                <span onClick={() => handleLike(post.id)} style={{ cursor: "pointer" }}>
+                                    <i className="fa-regular fa-thumbs-up me-1"></i> {post.reactions.likes} Likes
+                                </span>
+                                <span onClick={() => handleDislike(post.id)} style={{ cursor: "pointer" }}>
+                                    <i className="fa-regular fa-thumbs-down me-1"></i> {post.reactions.dislikes} Dislikes
+                                </span>                            </div>
                             <div>
                                 <h6 style={{ textAlign: 'center', fontWeight: 'bold', marginTop: '20px' }}>Comments</h6>
-                                {comments && (comments.map((comment) =>
-                                ((comment.postId === post.id) ? (<div key={comment.id}
-                                    style={{
-                                        height: 'auto', padding: '10px', borderRadius: '10px', background: 'white',
-                                        display: 'flex', justifyContent: 'space-between', alignItems: 'center'
-                                    }}>
-                                    <div style={{ fontSize: 'medium', fontWeight: 'bold' }}>{comment.user.fullName}</div>
-                                    <div>{comment.body}</div>
-                                    <div style={{ color: 'gray' }}>{`${comment.likes} likes`}</div>
-                                </div>) : (null))))}
+                                
                                 <div className="addComment">
-                                    <input style={{ padding: '20px 8px', borderRadius: '10px', border: 'solid 1px gray', margin: '20px 0', width: '100%' }}
+                                    <input
+                                        style={{ padding: '20px 8px', borderRadius: '10px', border: 'solid 1px gray', margin: '20px 0', width: '100%' }}
                                         id='Ccontent'
                                         type="text-area"
                                         placeholder='Add your comment'
-                                        value={commentText[post.id] || ""} // Use the specific post's comment
-                                        onChange={(e) => handleCommentChnage(post.id, e)} // Call handleCommentChange for the specific post
+                                        value={commentText[post.id] || ""} // Ensure it uses the correct comment for the post
+                                        onChange={(e) => handleCommentChnage(post.id, e)} // Update the comment text
                                         onKeyDown={(e) => {
                                             if (e.key === 'Enter') {
                                                 handleAddComment(post.id);
                                             }
                                         }}
                                     />
+
                                     <div style={{ display: 'flex', justifyContent: 'end', alignItems: 'center' }}>
-                                        <button className='btn btn-info'>Add</button>
+                                        <button style={{fontSize:'small'}}
+                                        onClick={() => handleAddComment(post.id)}
+                                        disabled={!commentText[post.id]}
+                                        className='btn btn-info'>Add Comment</button>
                                     </div>
+                                    {comments
+                                        .filter(comment => comment.postId === post.id)
+                                        .map(comment => (
+                                            <div key={comment.id} style={{
+                                                height: 'auto', padding: '10px', borderRadius: '10px', background: 'white',
+                                                display: 'flex', justifyContent: 'space-between', alignItems: 'center'
+                                            }}>
+                                                <div style={{ fontSize: 'medium', fontWeight: 'bold' }}>{comment.user.fullName}</div>
+                                                <div style={{width:'100%',textAlign:'center'}}>{comment.body}</div>
+                                            </div>
+                                        ))
+                                    }
+
                                 </div>
                             </div>
                         </div>
