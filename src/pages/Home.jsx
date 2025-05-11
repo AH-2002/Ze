@@ -16,7 +16,9 @@ export default function Home() {
     const [commentText, setCommentText] = useState({});
     const userData = JSON.parse(localStorage.getItem("userData"));
 
-    console.log(comments);
+    console.log("comments:", comments);
+    console.log("user data:", userData);
+
 
 
     const handleAddTag = (e) => {
@@ -105,7 +107,8 @@ export default function Home() {
             user: {
                 id: userData.id,
                 username: userData.fullName,
-                fullName: userData.fullName
+                fullName: `${userData.firstName} ${userData.lastName}`,
+                image: userData.image
             }
         };
 
@@ -225,7 +228,7 @@ export default function Home() {
                                 </span>                            </div>
                             <div>
                                 <h6 style={{ textAlign: 'center', fontWeight: 'bold', marginTop: '20px' }}>Comments</h6>
-                                
+
                                 <div className="addComment">
                                     <input
                                         style={{ padding: '20px 8px', borderRadius: '10px', border: 'solid 1px gray', margin: '20px 0', width: '100%' }}
@@ -240,22 +243,31 @@ export default function Home() {
                                             }
                                         }}
                                     />
-
                                     <div style={{ display: 'flex', justifyContent: 'end', alignItems: 'center' }}>
-                                        <button style={{fontSize:'small'}}
-                                        onClick={() => handleAddComment(post.id)}
-                                        disabled={!commentText[post.id]}
-                                        className='btn btn-info'>Add Comment</button>
+                                        <button style={{ fontSize: 'small' }}
+                                            onClick={() => handleAddComment(post.id)}
+                                            disabled={!commentText[post.id]}
+                                            className='btn btn-info'>Add Comment</button>
                                     </div>
                                     {comments
                                         .filter(comment => comment.postId === post.id)
                                         .map(comment => (
                                             <div key={comment.id} style={{
                                                 height: 'auto', padding: '10px', borderRadius: '10px', background: 'white',
-                                                display: 'flex', justifyContent: 'space-between', alignItems: 'center'
+                                                display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%'
                                             }}>
-                                                <div style={{ fontSize: 'medium', fontWeight: 'bold' }}>{comment.user.fullName}</div>
-                                                <div style={{width:'100%',textAlign:'center'}}>{comment.body}</div>
+                                                <div style={{ width: '100%' }}>
+                                                    <img
+                                                        src={comment.user.image}
+                                                        alt={`${comment.user.firstName} ${comment.user.lastName}`}
+                                                        width="50"
+                                                        height="50"
+                                                        style={{ borderRadius: "50%", objectFit: "cover", marginRight: "10px" }}
+                                                    />
+                                                </div>
+                                                <div style={{ width: '100%', textAlign: 'center' }}>{comment.body}</div>
+                                                <div style={{ width: '100%', fontSize: 'medium', fontWeight: 'bold' }}>{comment.user.fullName}</div>
+
                                             </div>
                                         ))
                                     }
