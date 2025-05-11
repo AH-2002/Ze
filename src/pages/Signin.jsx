@@ -6,7 +6,7 @@ export default function Signin() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const [isSignedIn, setIsSignedIn] = useState(false);
+    const [successMessage, setSuccessMessage] = useState('');
     const [loading, setLoading] = useState(false);
 
 
@@ -27,9 +27,7 @@ export default function Signin() {
                 }
             });
             if (status === 200) {
-                setIsSignedIn(true);
-                setError('');
-                alert("Sign In Successful!");
+                setSuccessMessage("Sign In Successful!");
                 const token = data.accessToken;
                 localStorage.setItem("token", token)
                 localStorage.setItem("userData", JSON.stringify({
@@ -76,11 +74,38 @@ export default function Signin() {
                             style={{ width: '100%', padding: '10px', marginTop: '5px', border: '1px solid #ccc', borderRadius: '4px' }}
                         />
                     </div>
-                    {error && <p style={{ color: 'red', fontSize: '14px' }}>{error}</p>}
                     <button type="submit" style={{ padding: '10px', backgroundColor: '#007bff', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }} disabled={loading}>
                         {loading ? 'Signing In...' : 'Sign In'}
                     </button>
                 </form>
+                 
+                {error && (
+                    <p style={{
+                        color: 'red',
+                        fontSize: '14px',
+                        backgroundColor: '#f8d7da',
+                        border: '1px solid #f5c6cb',
+                        padding: '10px',
+                        borderRadius: '4px',
+                        margin: '20px 0'
+                    }}>
+                        {error}
+                    </p>
+                )}
+
+                {successMessage && (
+                    <p style={{
+                        color: 'green',
+                        fontSize: '14px',
+                        backgroundColor: '#d4edda',
+                        border: '1px solid #c3e6cb',
+                        padding: '10px',
+                        borderRadius: '4px',
+                        margin: '20px 0'
+                    }}>
+                        {successMessage}
+                    </p>
+                )}
                 <p style={{ marginTop: '15px' }}>
                     Don't have an account? <a href="/signup">Sign up</a>
                 </p>
