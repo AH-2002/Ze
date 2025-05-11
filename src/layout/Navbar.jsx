@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useContext } from "react"
-import { Link } from "react-router-dom"
-import { usersContext } from "../context/Store"
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+import { usersContext } from "../context/Store";
 
 
 export default function Navbar() {

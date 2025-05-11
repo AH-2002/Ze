@@ -13,13 +13,15 @@ import Profile from './pages/Profile';
 import NotFound from './pages/NotFound';
 
 function App() {
+  const token = localStorage.getItem('token'); 
+
   return (
     <div className="App">
       <div>
         <PostsContextProvider>
           <TodosContextProvider>
             <UsersContextProvider>
-            <Navbar />
+            {token && <Navbar />}
               <Routes>
                 <Route path='/' element={<Signin />} />
                 <Route path='/signin' element={<Signin />} />
