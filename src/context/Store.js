@@ -12,7 +12,6 @@ export function PostsContextProvider(props) {
         try {
             let { data } = await axios.get(`${BASE_URL}/posts`);
             setPosts(data.posts);
-            console.log(data)
         } catch (error) {
             console.error("Error fetching users", error);
         }

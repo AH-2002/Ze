@@ -9,9 +9,8 @@ export default function Users() {
         <section style={{ background: 'white' }}>
             <div style={{ padding: '20px' }}>
                 <h2 style={{ marginBottom: '20px', fontWeight: 'bold' }} >Users</h2>
-
                 {users && users.map((user) => (
-                    <Link to={`/userDetails/${user.id}`}>
+                    <Link to={`/userDetails/${user.id}`} key={user.id}>
 
                         <div style={{ background: 'rgb(236, 235, 235)', padding: '10px', borderRadius: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
                             <div>

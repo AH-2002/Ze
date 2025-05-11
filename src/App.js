@@ -13,7 +13,7 @@ import Profile from './pages/Profile';
 import NotFound from './pages/NotFound';
 
 function App() {
-  const token = localStorage.getItem('token'); 
+  const token = localStorage.getItem('token');
 
   return (
     <div className="App">
@@ -21,9 +21,9 @@ function App() {
         <PostsContextProvider>
           <TodosContextProvider>
             <UsersContextProvider>
-            {token && <Navbar />}
+              {token && <Navbar />}
               <Routes>
-                <Route path='/' element={<Signin />} />
+                {token ? (<Route path='/' element={<Home />} />) : (<Route path='/' element={<Signin />} />)}
                 <Route path='/signin' element={<Signin />} />
                 <Route path='/home' element={<Home />} />
                 <Route path='/users' element={<Users />} />

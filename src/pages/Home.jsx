@@ -16,9 +16,6 @@ export default function Home() {
     const [commentText, setCommentText] = useState({});
     const userData = JSON.parse(localStorage.getItem("userData"));
 
-    console.log("comments:", comments);
-    console.log("user data:", userData);
-
 
 
     const handleAddTag = (e) => {

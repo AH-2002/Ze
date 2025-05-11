@@ -13,7 +13,6 @@ export default function Navbar() {
         user?.lastName?.toLowerCase().includes(query.toLowerCase()) ||
         user?.midenName?.toLowerCase().includes(query.toLowerCase())
     )
-    console.log(users);
     return (
         <nav style={{ position: 'sticky', top: '0', left: '0', zIndex: 10 }} className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid position-relative ">
