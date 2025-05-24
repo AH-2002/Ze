@@ -1,13 +1,18 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { BASE_URL, BASE_URL1 } from "../config";
-import { postsContext, todosContext, usersContext } from "../context/Store"
+import { BASE_URL } from "../config";
+import { fetchPosts } from "../redux/postsSlice";
+import { fetchTodos } from "../redux/todosSlice";
+import { fetchUsers } from "../redux/UsersSlice";
 
 export default function Home() {
-    let { users } = useContext(usersContext);
-    let { todos } = useContext(todosContext);
-    let { posts, setPosts } = useContext(postsContext);
+    let dispatch = useDispatch();
+    let { users } = useSelector((state) => state.users);
+    let { todos } = useSelector((state) => state.todos)
+    let { posts } = useSelector((state) => state.posts);
+    const [Posts, setPosts] = useState([]);
     const [postTitle, setPostTitle] = useState("");
     const [postContent, setPostContent] = useState("");
     const [tags, setTags] = useState([]);
@@ -16,6 +21,15 @@ export default function Home() {
     const [commentText, setCommentText] = useState({});
     const userData = JSON.parse(localStorage.getItem("userData"));
 
+    useEffect(() => {
+        dispatch(fetchUsers());
+        dispatch(fetchTodos());
+        dispatch(fetchPosts());
+    }, [dispatch])
+
+    useEffect(() => {
+        setPosts(posts);
+    }, [posts])
 
 
     const handleAddTag = (e) => {
@@ -205,7 +219,7 @@ export default function Home() {
                     </form>
                 </div>
                 <div className="showPosts" style={{ padding: '20px' }}>
-                    {posts ? (posts.map((post) => (
+                    {Posts ? (Posts.map((post) => (
                         <div key={post.id} className="card mb-3 p-3" style={{ background: 'white', borderRadius: '10px', boxShadow: '0 2px 6px rgba(0,0,0,0.1)' }}>
                             <h5>{post.title}</h5>
                             <p className="text-muted">{post.body}</p>

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router"
-import { BASE_URL, BASE_URL1 } from "../config";
+import { BASE_URL } from "../config";
 
 
 export default function UserDetails() {
@@ -33,7 +33,7 @@ export default function UserDetails() {
             </div>
             <div className='personal-details' style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
                 <h5>Personal Details</h5>
-                <div className='personal-info' style={{ display: 'flex', justifyContent: 'space-between'}}>
+                <div className='personal-info' style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <div>
                         {userDetails.gender === 'male' ?
                             (<><i style={{ fontSize: '30px' }} className="fa-solid fa-person"></i><span> {userDetails.gender}</span></>) :
@@ -87,7 +87,7 @@ export default function UserDetails() {
                 </div>
             </div>
             <div className="education">
-                <h5 style={{marginBottom:'20px'}}>Education</h5>
+                <h5 style={{ marginBottom: '20px' }}>Education</h5>
                 <div style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                     <div>
                         <i class="fa-solid fa-graduation-cap"></i>
@@ -97,7 +97,7 @@ export default function UserDetails() {
             </div>
             <div className="Work-Experience">
                 <h5>Work Experience</h5>
-                <div style={{fontSize: 'larger', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: 'auto', textAlign: 'left' }}>
+                <div style={{ fontSize: 'larger', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: 'auto', textAlign: 'left' }}>
                     <div>
                         {`Company: ${userDetails?.company?.name}`}
                     </div>

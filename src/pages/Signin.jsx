@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { BASE_URL, BASE_URL1 } from "../config";
+import { BASE_URL } from "../config";
 
 export default function Signin() {
     const [username, setUsername] = useState('');
@@ -50,7 +50,7 @@ export default function Signin() {
         <section style={{ marginTop: '100px' }}>
             <div style={{ maxWidth: '400px', margin: '0 auto', padding: '20px', textAlign: 'center', border: '1px solid #ccc', borderRadius: '8px' }}>
                 <h2>Sign In</h2>
-                <p style={{color:'gray'}}>try (emilys) and (emilyspass) to login</p>
+                <p style={{ color: 'gray' }}>try (emilys) and (emilyspass) to login</p>
                 <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column' }}>
                     <div style={{ marginBottom: '15px', textAlign: 'left' }}>
                         <label htmlFor="username">Username:</label>
@@ -78,7 +78,7 @@ export default function Signin() {
                         {loading ? 'Signing In...' : 'Sign In'}
                     </button>
                 </form>
-                 
+
                 {error && (
                     <p style={{
                         color: 'red',

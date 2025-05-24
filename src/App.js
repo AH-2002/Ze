@@ -1,6 +1,5 @@
 import { Route, Routes } from 'react-router';
 import './App.css';
-import { PostsContextProvider, TodosContextProvider, UsersContextProvider } from './context/Store';
 import Navbar from './layout/Navbar';
 import Home from './pages/Home';
 import Users from './pages/Users';
@@ -18,29 +17,22 @@ function App() {
   return (
     <div className="App">
       <div>
-        <PostsContextProvider>
-          <TodosContextProvider>
-            <UsersContextProvider>
-              {token && <Navbar />}
-              <Routes>
-                {token ? (<Route path='/' element={<Home />} />) : (<Route path='/' element={<Signin />} />)}
-                <Route path='/signin' element={<Signin />} />
-                <Route path='/home' element={<Home />} />
-                <Route path='/users' element={<Users />} />
-                <Route path='/userDetails' element={<UserDetails />} >
-                  <Route path=':id' element={<UserDetails />} />
-                </Route>
-                <Route path='/quotes' element={<Quotes />} />
-                <Route path='/todo' element={<Todo />} />
-                <Route path='/recipes' element={<Recipes />} />
-                <Route path='/profile' element={<Profile />} />
-                <Route path='*' element={<NotFound />} />
+        {token && <Navbar />}
+        <Routes>
+          {token ? (<Route path='/' element={<Home />} />) : (<Route path='/' element={<Signin />} />)}
+          <Route path='/signin' element={<Signin />} />
+          <Route path='/home' element={<Home />} />
+          <Route path='/users' element={<Users />} />
+          <Route path='/userDetails' element={<UserDetails />} >
+            <Route path=':id' element={<UserDetails />} />
+          </Route>
+          <Route path='/quotes' element={<Quotes />} />
+          <Route path='/todo' element={<Todo />} />
+          <Route path='/recipes' element={<Recipes />} />
+          <Route path='/profile' element={<Profile />} />
+          <Route path='*' element={<NotFound />} />
 
-              </Routes>
-            </UsersContextProvider>
-          </TodosContextProvider>
-        </PostsContextProvider>
-
+        </Routes>
       </div>
 
     </div>

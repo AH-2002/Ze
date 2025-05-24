@@ -1,13 +1,15 @@
-import { useState } from "react";
-import { useContext } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { usersContext } from "../context/Store";
+import { fetchUsers } from "../redux/UsersSlice";
 
 
 export default function Navbar() {
-    let { users } = useContext(usersContext);
+    let { users } = useSelector((state) => state.users);
+    let dispatch = useDispatch();
     let [query, setQuery] = useState("");
     let [focused, setFocused] = useState(false);
+    useEffect(() => { dispatch(fetchUsers()) }, [dispatch])
     let filteredUsers = users?.filter(user =>
         user?.firstName?.toLowerCase().includes(query.toLowerCase()) ||
         user?.lastName?.toLowerCase().includes(query.toLowerCase()) ||
